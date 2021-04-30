@@ -32,8 +32,6 @@ public class UserResources {
 	@PostMapping("/registerUser")
 	public ResponseEntity<UserEntity> registerUser(@RequestBody UserRegistrationDTO userRegistrationDTO) {
 
-		logger.info(
-				"userRegistrationDTO is:" + userRegistrationDTO.getUserName() + userRegistrationDTO.getUserEmailId());
 		logger.info("INSIDE /registerUser");
 
 		UserEntity userEntity = null;
@@ -70,20 +68,18 @@ public class UserResources {
 	}
 
 	@PostMapping("/login")
-	public ResponseEntity<UserEntity> loginUser(@RequestBody UserLoginDTO userLoginDTO) {
+	public ResponseEntity<UserLoginDTO> loginUser(@RequestBody UserLoginDTO userLoginDTO) {
 
 		logger.info("INSIDE /login");
 
-		UserEntity userEntity = null;
-
 		try {
-			userEntity = userService.validateAndLoginUser(userLoginDTO);
+			userLoginDTO = userService.validateAndLoginUser(userLoginDTO);
 		} catch (NullPointerException e) {
 			e.toString();
 		}
-		if (userEntity != null)
-			return new ResponseEntity<UserEntity>(userEntity, HttpStatus.OK);
+		if (userLoginDTO != null)
+			return new ResponseEntity<UserLoginDTO>(userLoginDTO, HttpStatus.OK);
 		else
-			return new ResponseEntity<UserEntity>(userEntity, HttpStatus.FAILED_DEPENDENCY);
+			return new ResponseEntity<UserLoginDTO>(userLoginDTO, HttpStatus.FAILED_DEPENDENCY);
 	}
 }

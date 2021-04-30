@@ -99,9 +99,11 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public UserEntity validateAndLoginUser(UserLoginDTO userLoginDTO) {
+	public UserLoginDTO validateAndLoginUser(UserLoginDTO userLoginDTO) {
 
 		logger.info("Inside validateAndLoginUser()");
+		logger.info(userLoginDTO.getUserName());
+		logger.info(userLoginDTO.getUserPassword());
 
 		UserEntity userEntity = null;
 
@@ -118,8 +120,8 @@ public class UserServiceImpl implements UserService {
 //			logger.info("userName is" + userEntity.getUserName());
 
 			if (userEntity.getUserPassword().equals(userLoginDTO.getUserPassword())) {
-				logger.info("userEntity is" + userEntity);
-				return userEntity;
+				logger.info("userEntity is" + userEntity.toString());
+				return userLoginDTO;
 			}
 
 		} catch (UserNameException | UserPasswordException e) {

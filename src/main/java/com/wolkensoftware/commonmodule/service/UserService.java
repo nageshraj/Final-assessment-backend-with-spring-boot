@@ -12,6 +12,6 @@ public interface UserService {
 
 	public List<UserEntity> validateAndGetAllUsers();
 
-	public UserEntity validateAndLoginUser(UserLoginDTO userLoginDTO);
+	public UserLoginDTO validateAndLoginUser(UserLoginDTO userLoginDTO);
 
 }
