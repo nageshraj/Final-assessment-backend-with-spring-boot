@@ -13,4 +13,8 @@ public interface ProductsService {
 
 	public List<ProductsEntity> validateAndGetProductsByType(String productTypeSelected);
 
+	public ProductsEntity validateAndGetProductByName(String name);
+
+	public Integer validateAndDeleteByName(String name);
+
 }

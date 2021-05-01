@@ -12,4 +12,6 @@ public interface ProductsRepository extends JpaRepository<ProductsEntity, Intege
 
 	public List<ProductsEntity> findByProductType(String productTypeSelected);
 
+	public Integer deleteByProductName(String productNameSelected);
+
 }

@@ -72,7 +72,13 @@ public class ProductsServiceImpl implements ProductsService {
 			if (existingProductEntity == null)
 				return productsRepository.save(productsEntity);
 			else {
-				existingProductEntity.setProductQuantity(productsEntity.getProductQuantity() + 1);
+				existingProductEntity.setProductName(productsEntity.getProductName());
+				existingProductEntity.setProductType(productsEntity.getProductType());
+				existingProductEntity.setProductAvailability(productsEntity.getProductAvailability());
+				existingProductEntity.setProductPrice(productsEntity.getProductPrice());
+				existingProductEntity.setProductRating(productsEntity.getProductRating());
+				existingProductEntity.setProductQuantity(productsEntity.getProductQuantity());
+
 				return productsRepository.save(existingProductEntity);
 
 			}
@@ -107,6 +113,44 @@ public class ProductsServiceImpl implements ProductsService {
 			else
 				return productsRepository.findByProductType(productTypeSelected);
 		} catch (ProductTypeException | NullPointerException e) {
+			logger.error(e.toString());
+		}
+
+		return null;
+	}
+
+	@Override
+	public ProductsEntity validateAndGetProductByName(String name) {
+
+		logger.info("Inside validateAndGetProductByName()");
+
+		ProductsEntity productsEntity = null;
+
+		try {
+			if (name.length() < 5 || name.length() > 50)
+				throw new ProductNameException(); // ProductType is invalid
+			else
+				return productsRepository.findByProductName(name);
+		} catch (ProductNameException | NullPointerException e) {
+			logger.error(e.toString());
+		}
+
+		return null;
+	}
+
+	@Override
+	public Integer validateAndDeleteByName(String name) {
+		logger.info("Inside validateAndDeleteByName()");
+
+		ProductsEntity productsEntity = null;
+
+		try {
+			if (name.length() < 5 || name.length() > 50)
+				throw new ProductNameException(); // ProductType is invalid
+			else
+
+				return productsRepository.deleteByProductName(name);
+		} catch (ProductNameException | NullPointerException e) {
 			logger.error(e.toString());
 		}
 
