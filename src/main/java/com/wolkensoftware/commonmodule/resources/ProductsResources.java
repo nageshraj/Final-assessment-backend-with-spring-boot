@@ -23,7 +23,6 @@ import com.wolkensoftware.commonmodule.service.ProductsService;
 
 @RestController
 @RequestMapping("/")
-@CrossOrigin(origins = "http://localhost:4200")
 @Transactional
 public class ProductsResources {
 
@@ -32,6 +31,7 @@ public class ProductsResources {
 	@Autowired
 	ProductsService productsService;
 
+	@CrossOrigin(origins = "http://localhost:4200")
 	@PutMapping("/addProduct")
 	public ResponseEntity<ProductsEntity> registerUser(@RequestBody ProductsDTO productsDTO) {
 
@@ -52,6 +52,7 @@ public class ProductsResources {
 
 	}
 
+	@CrossOrigin(origins = "http://localhost:4200")
 	@GetMapping("/getAllProducts")
 	public ResponseEntity<List<ProductsEntity>> getAllProducts() {
 
@@ -71,6 +72,7 @@ public class ProductsResources {
 
 	}
 
+	@CrossOrigin(origins = "http://localhost:4200")
 	@GetMapping("/getAllProductsByType/{type}")
 	public ResponseEntity<List<ProductsEntity>> getAllProductsByType(@PathVariable String type) {
 
@@ -90,6 +92,7 @@ public class ProductsResources {
 
 	}
 
+	@CrossOrigin(origins = "http://localhost:4200")
 	@GetMapping("/getProductByName/{name}")
 	public ResponseEntity<ProductsEntity> getProductByName(@PathVariable String name) {
 
@@ -109,6 +112,7 @@ public class ProductsResources {
 
 	}
 
+	@CrossOrigin(origins = "http://localhost:4200")
 	@DeleteMapping("/deleteByName/{name}")
 	public ResponseEntity<Integer> deleteByName(@PathVariable String name) {
 

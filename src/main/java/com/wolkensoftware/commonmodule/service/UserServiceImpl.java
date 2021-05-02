@@ -118,10 +118,21 @@ public class UserServiceImpl implements UserService {
 			userEntity = userRepository.findByUserName(userLoginDTO.getUserName());
 //			logger.info("userEntity is" + userEntity);
 //			logger.info("userName is" + userEntity.getUserName());
+			if (userEntity != null) {
+				if (userEntity.getUserPassword().equals(userLoginDTO.getUserPassword())) {
+					logger.info("userEntity is" + userEntity.toString());
+					return userLoginDTO;
+				} else {
+					userLoginDTO.setUserName("");
+					userLoginDTO.setUserPassword("");
+					return userLoginDTO;
 
-			if (userEntity.getUserPassword().equals(userLoginDTO.getUserPassword())) {
-				logger.info("userEntity is" + userEntity.toString());
+				}
+			} else {
+				userLoginDTO.setUserName("");
+				userLoginDTO.setUserPassword("");
 				return userLoginDTO;
+
 			}
 
 		} catch (UserNameException | UserPasswordException e) {

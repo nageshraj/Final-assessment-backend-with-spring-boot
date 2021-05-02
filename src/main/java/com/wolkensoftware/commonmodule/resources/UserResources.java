@@ -72,14 +72,16 @@ public class UserResources {
 
 		logger.info("INSIDE /login");
 
+		UserLoginDTO user = null;
+
 		try {
-			userLoginDTO = userService.validateAndLoginUser(userLoginDTO);
+			user = userService.validateAndLoginUser(userLoginDTO);
 		} catch (NullPointerException e) {
 			e.toString();
 		}
-		if (userLoginDTO != null)
-			return new ResponseEntity<UserLoginDTO>(userLoginDTO, HttpStatus.OK);
+		if (user != null)
+			return new ResponseEntity<UserLoginDTO>(user, HttpStatus.OK);
 		else
-			return new ResponseEntity<UserLoginDTO>(userLoginDTO, HttpStatus.FAILED_DEPENDENCY);
+			return new ResponseEntity<UserLoginDTO>(user, HttpStatus.FAILED_DEPENDENCY);
 	}
 }
