@@ -11,10 +11,12 @@ import org.hibernate.annotations.GenericGenerator;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 @Getter
 @Setter
 @Entity
+@ToString
 @Table(name = "user_details_table")
 public class UserEntity {
 

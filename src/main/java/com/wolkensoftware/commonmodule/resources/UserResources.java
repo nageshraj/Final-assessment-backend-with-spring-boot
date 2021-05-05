@@ -79,6 +79,8 @@ public class UserResources {
 		} catch (NullPointerException e) {
 			e.toString();
 		}
+		
+		logger.info("Response to server is: "+user);
 		if (user != null)
 			return new ResponseEntity<UserLoginDTO>(user, HttpStatus.OK);
 		else

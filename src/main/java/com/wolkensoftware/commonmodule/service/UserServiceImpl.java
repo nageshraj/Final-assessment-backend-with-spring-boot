@@ -123,15 +123,15 @@ public class UserServiceImpl implements UserService {
 					logger.info("userEntity is" + userEntity.toString());
 					return userLoginDTO;
 				} else {
-					userLoginDTO.setUserName("");
-					userLoginDTO.setUserPassword("");
-					return userLoginDTO;
+//					userLoginDTO.setUserName("");
+//					userLoginDTO.setUserPassword("");
+					return null;
 
 				}
 			} else {
-				userLoginDTO.setUserName("");
-				userLoginDTO.setUserPassword("");
-				return userLoginDTO;
+//				userLoginDTO.setUserName("");
+//				userLoginDTO.setUserPassword("");
+				return null;
 
 			}
 
